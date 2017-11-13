@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-13T13:56:56+08:00</updated><id>http://localhost:4000/</id><title type="html">trainingResources</title><subtitle>There is nothing much to see here, this is a scratch paper. This is primarily used as a communications medium during training sessions. There is no &quot;comments&quot; section, I can be reached via email (already  listed somewhere in this site) or via twitter (also listed in this site)</subtitle><entry><title type="html">MEAN Training resource page</title><link href="http://localhost:4000/nodejs/2017/10/16/mean-training.html" rel="alternate" type="text/html" title="MEAN Training resource page" /><published>2017-10-16T16:00:00+08:00</published><updated>2017-10-16T16:00:00+08:00</updated><id>http://localhost:4000/nodejs/2017/10/16/mean-training</id><content type="html" xml:base="http://localhost:4000/nodejs/2017/10/16/mean-training.html">&lt;h2 id=&quot;contact-details&quot;&gt;Contact details&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;email&lt;/strong&gt; ted@thelogbox.com, tedhagos@gmail.com&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;twitter&lt;/strong&gt; @lovescaffeine&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Lecture notes&lt;/strong&gt; can be found at &lt;a href=&quot;https://tedhagos.gitbooks.io/mean/content/&quot;&gt;tedhagos.gitbooks.io&lt;/a&gt;. This is a work in progress, it is quite possible that the training sessions will finish first before this gets completed. PDF version of the lecture notes can be downloaded from the site.&lt;/p&gt;
+
+&lt;p&gt;The preworked code examples are in &lt;a href=&quot;https://github.com/tedhagos/mean-training&quot;&gt;github/mean-training&lt;/a&gt;. You should really try to download it early on in the training sessions so you can read ahead.&lt;/p&gt;
+
+&lt;h2 id=&quot;lecture-codes&quot;&gt;Lecture codes&lt;/h2&gt;
+
+&lt;p&gt;Whenever there are live coding samples, they will be posted as a Gist on github.com. Here are the links.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/cf50e62273a0e4c3f9d49a8f1b165b99&quot;&gt;Event Emitters&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/0f126adb8e96eaab1a42affe6142cc24&quot;&gt;File Read , events&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/24da81d407974a6800a5d7cc82b1093b&quot;&gt;Server, streams&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/62fbafe35ad43e17ad97afb969caf2ee&quot;&gt;Router + bodyparser example&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/1cbe338791b28f05bb039f9faff4368e&quot;&gt;Connect middleware example&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/d1dee307e7317ffc83a057b1906c55c5&quot;&gt;ArrayFilter method&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/e65bcb8e67b2529eee6ee207ef3c7f71&quot;&gt;Promises&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/98e37bd6eeef07c4ba66a5c78a1f14f5&quot;&gt;Basic express usage&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/a26a834abe068734fed01be8b0746bfa&quot;&gt;Express, Bodyparser, modules&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/f311cee24292bd45a6dccb604923611a&quot;&gt;Mongoose test&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Ted Hagos</name></author><summary type="html">Contact details</summary></entry></feed>
