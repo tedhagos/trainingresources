@@ -1,15 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/trainingresources/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/trainingresources/" rel="alternate" type="text/html" /><updated>2017-11-27T11:20:43+08:00</updated><id>http://localhost:4000/trainingresources/</id><title type="html">trainingresources</title><subtitle>There is nothing much to see here, this is a scratch paper. This is primarily used as a communications medium during training sessions. There is no &quot;comments&quot; section, I can be reached via email (already  listed somewhere in this site) or via twitter (also listed in this site)</subtitle><entry><title type="html">Angular Training resource page</title><link href="http://localhost:4000/trainingresources/nodejs/2017/10/16/angularjs-training.html" rel="alternate" type="text/html" title="Angular Training resource page" /><published>2017-10-16T16:00:00+08:00</published><updated>2017-10-16T16:00:00+08:00</updated><id>http://localhost:4000/trainingresources/nodejs/2017/10/16/angularjs-training</id><content type="html" xml:base="http://localhost:4000/trainingresources/nodejs/2017/10/16/angularjs-training.html">&lt;h2 id=&quot;contact-details&quot;&gt;Contact details&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/trainingresources/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/trainingresources/" rel="alternate" type="text/html" /><updated>2017-11-27T12:54:21+08:00</updated><id>http://localhost:4000/trainingresources/</id><title type="html">trainingresources</title><subtitle>There is nothing much to see here, this is a scratch paper. This is primarily used as a communications medium during training sessions. There is no &quot;comments&quot; section, I can be reached via email (already  listed somewhere in this site) or via twitter (also listed in this site)</subtitle><entry><title type="html">Angular Training resource page</title><link href="http://localhost:4000/trainingresources/nodejs/2017/10/16/angularjs-training.html" rel="alternate" type="text/html" title="Angular Training resource page" /><published>2017-10-16T16:00:00+08:00</published><updated>2017-10-16T16:00:00+08:00</updated><id>http://localhost:4000/trainingresources/nodejs/2017/10/16/angularjs-training</id><content type="html" xml:base="http://localhost:4000/trainingresources/nodejs/2017/10/16/angularjs-training.html">&lt;h2 id=&quot;training-details&quot;&gt;Training Details&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Dates&lt;/strong&gt; November 20 - 24, 27&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Location&lt;/strong&gt; Orange and Bronze, 108 Aguirre St., Legaspi Vil., Makati&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;contact-details&quot;&gt;Contact details&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;email&lt;/strong&gt; ted@thelogbox.com, tedhagos@gmail.com&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;twitter&lt;/strong&gt; @lovescaffeine&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;Lecture notes&lt;/strong&gt; can be found at &lt;a href=&quot;https://tedhagos.gitbooks.io/mean/content/&quot;&gt;tedhagos.gitbooks.io&lt;/a&gt;. This is a work in progress, it is quite possible that the training sessions will finish first before this gets completed. PDF version of the lecture notes can be downloaded from the site.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Lecture notes&lt;/strong&gt; can be found at &lt;a href=&quot;https://www.gitbook.com/book/tedhagos/angularjs/details&quot;&gt;tedhagos.gitbooks.io/angularjs&lt;/a&gt;. This is a work in progress, it is quite possible that the training sessions will finish first before this gets completed. PDF version of the lecture notes can be downloaded from the site.&lt;/p&gt;
 
-&lt;p&gt;The preworked code examples are in &lt;a href=&quot;https://github.com/tedhagos/mean-training&quot;&gt;github/mean-training&lt;/a&gt;. You should really try to download it early on in the training sessions so you can read ahead.&lt;/p&gt;
+&lt;h2 id=&quot;gists&quot;&gt;Gists&lt;/h2&gt;
 
-&lt;h2 id=&quot;lecture-codes&quot;&gt;Lecture codes&lt;/h2&gt;</content><author><name>Ted Hagos</name></author><summary type="html">Contact details</summary></entry><entry><title type="html">MEAN Training resource page</title><link href="http://localhost:4000/trainingresources/nodejs/2017/10/16/mean-training.html" rel="alternate" type="text/html" title="MEAN Training resource page" /><published>2017-10-16T16:00:00+08:00</published><updated>2017-10-16T16:00:00+08:00</updated><id>http://localhost:4000/trainingresources/nodejs/2017/10/16/mean-training</id><content type="html" xml:base="http://localhost:4000/trainingresources/nodejs/2017/10/16/mean-training.html">&lt;h2 id=&quot;contact-details&quot;&gt;Contact details&lt;/h2&gt;
+&lt;p&gt;Some of the live coding examples during the training are parked on the following location.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/633336959c0bbaf99a205acc06e2d4a0&quot;&gt;Controller example&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/d13fabb1e44791eb518556f6f97a938e&quot;&gt;Patterns of coding&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/93fdfe5ed5efbbdda7704c0a75ef0d0e&quot;&gt;Solution for GCF exercise&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/af11e61ed81e7e40cb191b81a54ad7ea&quot;&gt;Controller-Author Example&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/28db7a2438d0f38b6801cceddcc9c30f&quot;&gt;Form validation and HTTP&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/tedhagos/angularjs-project/tree/master/dbscript&quot;&gt;DBScripts for MongoDB&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://bit.ly/2A0nCOw&quot;&gt;ExpressJS Endpoints&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/30a02ab7f2295b12d15afee475918de3&quot;&gt;Express Server client&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/29244e102bd3d2c2242ee6f7cac3e259&quot;&gt;Routing&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://bit.ly/2jhmU5t&quot;&gt;Directives&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/a834e8ea9c19102ecbc2066c4f4ccca2&quot;&gt;Services&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/tedhagos/90405a635c25ab87709d4e849bd6f3c6&quot;&gt;Filters&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/tedhagos/angularjs-project&quot;&gt;AngularJS Project&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/tedhagos/angularjstools&quot;&gt;Angular Tools - Gulp etc.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;training-coverage&quot;&gt;Training Coverage&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Two way binding&lt;/li&gt;
+  &lt;li&gt;Controllers&lt;/li&gt;
+  &lt;li&gt;Angular Modules&lt;/li&gt;
+  &lt;li&gt;Services&lt;/li&gt;
+  &lt;li&gt;Directives and Views&lt;/li&gt;
+  &lt;li&gt;Routing&lt;/li&gt;
+  &lt;li&gt;AngularJS Tools&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Ted Hagos</name></author><summary type="html">Training Details</summary></entry><entry><title type="html">MEAN Training resource page</title><link href="http://localhost:4000/trainingresources/nodejs/2017/10/16/mean-training.html" rel="alternate" type="text/html" title="MEAN Training resource page" /><published>2017-10-16T16:00:00+08:00</published><updated>2017-10-16T16:00:00+08:00</updated><id>http://localhost:4000/trainingresources/nodejs/2017/10/16/mean-training</id><content type="html" xml:base="http://localhost:4000/trainingresources/nodejs/2017/10/16/mean-training.html">&lt;h2 id=&quot;contact-details&quot;&gt;Contact details&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;email&lt;/strong&gt; ted@thelogbox.com, tedhagos@gmail.com&lt;/li&gt;
