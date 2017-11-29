@@ -469,6 +469,13 @@ pre {
   .highlight .il {
     color: #099; }
 
+blockquote {
+  font-style: normal;
+  letter-spacing: 0px; }
+
+code, pre, .highlight pre {
+  font-family: 'Menlo', 'Inconsolata', 'Consolas', monospace; }
+
 /*
 code {
   font-family: 'Monaco', monospace; 

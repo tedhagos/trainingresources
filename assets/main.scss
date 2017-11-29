@@ -4,6 +4,17 @@
 
 @import "{{ site.theme }}";
 
+
+blockquote {
+  //font-family: 'Cambria','Georgia', 'Times New Roman', sans-serif;
+  font-style: normal;
+  letter-spacing: 0px;
+}
+
+code, pre, .highlight pre {
+  font-family: 'Menlo', 'Inconsolata', 'Consolas', monospace;
+}
+
 /*
 code {
   font-family: 'Monaco', monospace; 
