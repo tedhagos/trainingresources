@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Gulp basics</title>
+  <meta name="description" content="Description of the whole thing. What are the key points to remember">
+
+  <link rel="stylesheet" href="/trainingresources/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/trainingresources/angularjs/tools/gulp/2017/11/29/gulp-basics.html">
+  <link rel="alternate" type="application/rss+xml" title="trainingresources" href="/trainingresources/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/trainingresources/">trainingresources</a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/trainingresources/about/">About</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Gulp basics</h1>
+    <p class="post-meta">
+      <time datetime="2017-11-29T00:00:00+08:00" itemprop="datePublished">
+        
+        Nov 29, 2017
+      </time>
+      
+        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Ted Hagos</span></span>
+      
+      (categories : angularjs, tools, gulp)
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Description of the whole thing. What are the key points to remember</p>
+
+<ul>
+  <li>It’s a JS file</li>
+  <li>Does it use nodeJS?</li>
+  <li>It’s a stream system, unlike grunt</li>
+  <li>Plugin system</li>
+  <li>How is it compared to webpack, should I compare? No. I don’t care about that. That is a question for another day</li>
+  <li>Explain pipe</li>
+  <li>THe globbing function</li>
+  <li>gulp.src and gulp.dest</li>
+</ul>
+
+<h2 id="the-project-files">The Project files</h2>
+
+<p>The following listings shows the structure and content our sample project</p>
+
+<blockquote>
+  <p><strong>TIP :</strong> if you want to follow along this exercise, you can get the project source files, plus the completed gulpfile from <a href="https://github.com/tedhagos/angularjstools">github.com/angularjstools</a>. Downloading the project source files will save you from a lot of typing</p>
+</blockquote>
+
+<p><em>Example 1. Project Structure</em></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>├── index.html
+├── js
+│   ├── 1.js
+│   ├── controllers.js
+│   ├── directives.js
+│   ├── filters.js
+│   └── services.js
+</code></pre></div></div>
+
+<p><em>index.html</em></p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html</span> <span class="na">ng-app=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;body</span> <span class="na">ng-controller=</span><span class="s">"myController"</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;dir-one&gt;&lt;/dir-one&gt;</span>
+  <span class="nt">&lt;dir-two&gt;&lt;/dir-two&gt;</span>
+  <span class="nt">&lt;p&gt;</span> James<span class="nt">&lt;/p&gt;</span>
+
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"node_modules/angular/angular.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"node_modules/angular-route/angular-route.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"js/1.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"js/controllers.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"js/directives.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"js/filters.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"js/services.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p><em>1.js</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">mymod</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'app'</span><span class="p">,</span> <span class="p">[]);</span>
+</code></pre></div></div>
+
+<p><em>controllers.js</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">mymod</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'myController'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">myService</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'myController'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p><em>directives.js</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">mymod</span><span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="s1">'dirOne'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"dirOne"</span><span class="p">);</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">template</span><span class="p">:</span> <span class="s2">"&lt;h2&gt;Dir One&lt;/h1&gt;"</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">mymod</span><span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="s1">'dirTwo'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"dirTwo"</span><span class="p">);</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">template</span><span class="p">:</span> <span class="s2">"&lt;h2&gt;Dir Two&lt;/h1&gt;"</span><span class="p">,</span>
+    <span class="na">controller</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">myService</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"controller - Dir Two"</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p><em>filters.js</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">mymod</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="s1">'greet'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">"Hei "</span>  <span class="o">+</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p><em>services.js</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">mymod</span><span class="p">.</span><span class="nx">factory</span><span class="p">(</span><span class="s1">'myService'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$http</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"myService"</span><span class="p">);</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">foo</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="k">return</span> <span class="s2">"Hello Foo"</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h2 id="testing-and-running-the-project">Testing and Running the project</h2>
+
+<p>Get the http-server node package from the npm repos, if you don’t have it yet. We will use this to run a local web server for our development. On a terminal window, run the following command</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add http-server -g
+</code></pre></div></div>
+
+<p>When the command completes, run the http server in the current directory in order to serve its contents at “http://localhost:8080”</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http-server -c-1 .
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>NOTE :</strong> The flag <code class="highlighter-rouge">-c-1</code>  tells the http-server to get rid of the cache every 1 second. This way, we won’t run into cache problems during development</p>
+</blockquote>
+
+<p>Open a browser and navigate to <code class="highlighter-rouge">http://localhost:8080</code></p>
+
+<p><img src="http://localhost:4000/trainingresources/images/gulp-indexhtml.png" alt="" />
+<em>Fig 1. index.html</em></p>
+
+<p>Figure 1 (above) shows the app in Chrome browser with the Developer tools open.</p>
+
+<h2 id="project-setup">Project Setup</h2>
+
+<p>Create a working folder and initialize it for npm modules.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir test &amp;&amp; cd test
+yarn init -y  // (1)
+</code></pre></div></div>
+
+<p>(1) Use the -y flag if you don’t want to answer the yarn initialization questions one by one, this will quietly create the package.json file with all the defaults in place</p>
+
+<blockquote>
+  <p><strong>NOTE :</strong> You don’t have to use yarn, you can simply use npm instead of it. But if you want to try it out, you can find information about it at <a href="https://yarnpkg.com">yarnpkg.com</a></p>
+</blockquote>
+
+<p>To use gulp, you need to install it globally and on the project folder where you want to use it.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add -g gulp-cli      // (1)
+yarn add gulp --save-dev  // (2)
+</code></pre></div></div>
+
+<p>(1) By using the <strong>-g</strong> flag, this installs gulp globally</p>
+
+<p>(2) This installs gulp locally, on the project folder. We’d like to save it on package.json as a dev dependency, hence the <strong>–save-dev</strong> flag</p>
+
+<p>Next, create a gulp file named “gulpfile.js” in the working folder. If you execute <code class="highlighter-rouge">gulp</code> in the local folder without passing any parameter to it, it will look up for “gulpfile.js” by default, while it is possible to use another name, following the convention is much easier and frictionless because if you name it something else, then you will have to specify the name of gulp file using a command line flag. So, just name it “gulpfile.js”</p>
+
+<p>Listing 1 shows a minimally written gulp file. You may immediately notice that it’s written in Javascript, so web developers will be right at home immediately.</p>
+
+<p><em>Listing 1. boilerplate code</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">gulp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp'</span><span class="p">);</span>          <span class="c1">// (1)</span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'default'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>    <span class="c1">// (2)</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Ready to go'</span><span class="p">);</span>        <span class="c1">// (3)</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>(1) Gulp uses the commonJS style of loading the library, like NodeJS. Let’s get a reference to the gulp module and store it in the <code class="highlighter-rouge">gulp</code> variable</p>
+
+<p>(2) A task is defined by calling the method <code class="highlighter-rouge">gulp.task</code>, first param is the name of the task, and second param is a function. The task naming is up to you, you can choose whatever name you please, but this task called “default” is special. When you execute gulp without any parameter, or without specifying any task, it will look for a task named “default” and it will execute that</p>
+
+<p>(3) When the task is called, the statements in function body is executed</p>
+
+<p>Run gulp from the command line.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gulp
+</code></pre></div></div>
+
+<h2 id="bundling">Bundling</h2>
+
+<p>Gulp can be used to bundle a bunch of files and combine them all into one file. Consider the project structure as shown in Example 1 (below)</p>
+
+<p><em>Example 1. Simple web project structure</em></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>├── index.html
+├── js
+│   ├── 1.js
+│   ├── controllers.js
+│   ├── directives.js
+│   ├── filters.js
+│   └── services.js
+</code></pre></div></div>
+
+<p>The “js” folder contains multiple files, each one must be included in the HTML file. We can combine all these files into one and simpy reference a single file. In the HTML file, what we want to do is reference the combined JS file as shown in Listing 2 (below)</p>
+
+<p><em>Listing 2.index.html</em></p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html</span> <span class="na">ng-app=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;body</span> <span class="na">ng-controller=</span><span class="s">"myController"</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"node_modules/angular/angular.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"node_modules/angular-route/angular-route.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"dist/js/bundle.js"</span><span class="nt">&gt;&lt;/script&gt;</span>     // (1)
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>(1) Instead of 5 &lt;script&gt; tags, we only want to reference one. We will combine the 5 Javascript files into “bundle.js” The <strong>dist/js</strong> directory does not exist yet, we will also create this in the gulp file.</p>
+
+<p>To combine multiple files into one, we will use the “gulp-concat” plugin. Let’s pull it from the repo and add it to the project dev dependencies.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add gulp-concat --save-dev
+</code></pre></div></div>
+
+<p><em>Listing 3.gulp-concat</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">gulp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">concat</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp-concat'</span><span class="p">);</span> <span class="c1">// (1)        </span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'default'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>    
+  <span class="k">return</span> <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'js/**/*.js'</span><span class="p">)</span>      <span class="c1">// (2)</span>
+      <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">concat</span><span class="p">(</span><span class="s1">'bundle.js'</span><span class="p">))</span>     <span class="c1">// (3)</span>
+      <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'dist/js'</span><span class="p">))</span>    <span class="c1">// (4)</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>(1) Let’s get a reference to concat by requiring it</p>
+
+<p>(2) Let’s glob every file in the “js” directory. This js directory is being referenced relative to the location of “gulpfile.js”. If you have a different directory structure, you need to adjust this globbing expression. This line returns a stream which can now be piped into whatever plugin</p>
+
+<p>(3) This line takes the stream returned from (2) and then pipes it to the gulp-concat plugin, <code class="highlighter-rouge">concat</code> combines everything and saves it into “bundle.js”, but this isn’t a file yet, it is still a stream</p>
+
+<p>(4) This takes stream input from (3) and saves it into a file. The specified file path in the <code class="highlighter-rouge">gulp.dest</code> method will be subsequently created.</p>
+
+<p>To execute the default task, run <code class="highlighter-rouge">gulp</code> again from the command line.</p>
+
+<p><em>Example 3.Final structure of the project</em></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>├── dist                  // (1)
+│   └── js
+│       └── bundle.js
+├── gulpfile.js       
+├── index.html
+├── js                    // (2)
+│   ├── 1.js
+│   ├── controllers.js
+│   ├── directives.js
+│   ├── filters.js
+│   └── services.js
+</code></pre></div></div>
+
+<p>(1) Created by <code class="highlighter-rouge">gulp.dest</code></p>
+
+<p>(2) The original js folder</p>
+
+<h3 id="order-of-files">Order of files</h3>
+
+<h2 id="watcher">Watcher</h2>
+
+<p>Each time you make a change to the source files in the “js” folder, you need to run <code class="highlighter-rouge">gulp</code> from the command line so can see the effect of the changes. This task can be automated by setting up a watcher in gulp. In this way, whenever there are changes on the file system, gulp will automatically run a task.</p>
+
+<p>Listing 4 (below) shows a refactored gulp file. All the statements in our previous default task is now under another task named “script” and the “default” task contains the watch statement.</p>
+
+<p><em>Listing 4. Refactored gulpfile.js</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">gulp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">concat</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp-concat'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">watch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp-watch'</span><span class="p">);</span>           <span class="c1">// (1) </span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'default'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'script'</span><span class="p">]</span> <span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>  <span class="c1">// (2)</span>
+  <span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">(</span><span class="s1">'js/**/*.js'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'script'</span><span class="p">]);</span>      <span class="c1">// (3)</span>
+<span class="p">});</span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'script'</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Ready to go"</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'js/**/*.js'</span><span class="p">)</span>
+   <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">concat</span><span class="p">(</span><span class="s1">'bundle.js'</span><span class="p">))</span>
+   <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'dist/js'</span><span class="p">));</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>(1) The watcher is gulp plugin, so you need to get gulp-watch from the repo using the command <code class="highlighter-rouge">yarn add gulp-watch --save-dev</code></p>
+
+<p>(2) This task takes on 3 parameters, the first is the name of the task (default), third is the usual function which we want to execute when the task is called and the second one is an array of task. The tasks specified in this array needs to be executed first before we can execute the function in the default task. This is how gulp specifies dependencies. If a task has a dependency on other task, it will be specified in this second parameter.</p>
+
+<p>(3) The watch function takes on two parameters. The first one is a glob expression which specifies what directory or what files to watch, in our case, we’d like to watch for any changes in the “js” directory. The second parameter is an array which contains the tasks you want to run whenever a change is detected, in our case, we want to run the “script” task again</p>
+
+<p>When you run <code class="highlighter-rouge">gulp</code> this time, it won’t go back to the command prompt because  it is running a process (foreground process) that watches for any change in the file system. If you want to terminate the process, press <code class="highlighter-rouge">CTRL+C</code></p>
+
+<h2 id="minification">Minification</h2>
+
+<p>After bundling all your source files into one, you might want to consider minifying the source. Minification is a common practice for web applications because it reduces the size of the file that users will download when they want to view your webapp. To minify our bundled source file, we can use the  “gulp-uglify” plugin.</p>
+
+<p><em>Listing 5. Uglify</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">gulp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">concat</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp-concat'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">watch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp-watch'</span><span class="p">);</span>           
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'default'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'script'</span><span class="p">]</span> <span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>  
+  <span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">(</span><span class="s1">'js/**/*.js'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'script'</span><span class="p">]);</span>      
+<span class="p">});</span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'script'</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Ready to go"</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'js/**/*.js'</span><span class="p">)</span>
+   <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">concat</span><span class="p">(</span><span class="s1">'bundle.js'</span><span class="p">))</span>
+   <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">uglify</span><span class="p">())</span>
+   <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'dist/js'</span><span class="p">));</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>You need to stop the gulp process and restart it again so that our changes in the gulp file can take effect.</p>
+
+<h2 id="new-problems">New problems</h2>
+
+<p>The minification process will introduce some problems. As you can see in Fig 2, the console is showing some errors.</p>
+
+<p><img src="http://localhost:4000/trainingresources/images/gulp-indexhtml-error-minify.png" alt="" />
+<em>Fig 2.Minification problem</em></p>
+
+<p>From the obscure error message shown in Fig 2, it appears that the error is rooted somewhere in our controller codes, but remember that we are no longer referencing “controller.js”, all of our codes have been bundled and minified by gulp and this error is being thrown from “dist/js/bundle/js”. Let’s examine bundle.js, specifically the area of the controller code. A snippet of bundle.js is shown in Listing  6 (below)</p>
+
+<p><em>Listing 6. Snippet of bundle.js</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">mymod</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s2">"myController"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">r</span><span class="p">){</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"myController"</span><span class="p">)})</span>
+</code></pre></div></div>
+
+<p>The original code in our controller.js is shown in Listing 7 (below)</p>
+
+<p><em>Listing 7.controller.js</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">mymod</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'myController'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">myService</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'myController'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>It appears that the minification process mangled our original code, instead of passing the arguments <code class="highlighter-rouge">$scope</code> and <code class="highlighter-rouge">myService</code> to the controller function, it replaced these arguments with the letters “o” and and “r” respectively. But this is expected behavior, this is really one of the side effects of minification. How do we solve it? There are two ways. One of them involves writing our controllers and services a bit differently than what we’re used to, see listing 8 (below)</p>
+
+<p><em>Listing 8.How to write a controller for minification</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">mymod</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'myController'</span><span class="p">,</span> <span class="p">[</span><span class="s2">"$scope"</span><span class="p">,</span> <span class="s2">"myService"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">myService</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'myController'</span><span class="p">);</span>
+<span class="p">}]);</span>
+</code></pre></div></div>
+<p>The second parameter to the controller function is now an array in which the last element is function containing the definition of the controller and the previous elements are the things we need to inject to the controller function. This is a bit unnatural and bit harder to remember.</p>
+
+<p>Fortunately, we can solve this issue with tooling. The ng-gulp-annotate plugin can do this injection for us automatically, this way, we can still write AngularJS codes in the way we’re used to and still minify it.</p>
+
+<h2 id="ngannotate">ngAnnotate</h2>
+
+<p>To use ngAnnotate, pull it from the repo and save it as a dev dependency.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add gulp-ng-annotate --save-dev
+</code></pre></div></div>
+
+<p><em>Listing 9. ngAnnotate</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">gulp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">concat</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp-concat'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">watch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp-watch'</span><span class="p">);</span>           
+<span class="kd">let</span> <span class="nx">ngAnnotate</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp-ng-annotate'</span><span class="p">);</span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'default'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'script'</span><span class="p">]</span> <span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>  
+  <span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">(</span><span class="s1">'js/**/*.js'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'script'</span><span class="p">]);</span>      
+<span class="p">});</span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'script'</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Ready to go"</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'js/**/*.js'</span><span class="p">)</span>
+   <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">ngAnnotate</span><span class="p">())</span>              <span class="c1">// (1)</span>
+   <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">concat</span><span class="p">(</span><span class="s1">'bundle.js'</span><span class="p">))</span>
+   <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">uglify</span><span class="p">())</span>
+   <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'dist/js'</span><span class="p">));</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>(1) We’ll make ngAnnotate the first one in the pipeline, we’d like the codes annotated before it they get bundled and minified</p>
+
+<p>Restart the gulp process to reflect our changes.</p>
+
+<h2 id="sourcemaps-and-browser-debugging">Sourcemaps and Browser Debugging</h2>
+
+<h2 id="obfuscation">Obfuscation</h2>
+
+<h2 id="cleaning">Cleaning</h2>
+
+<h2 id="code-hinting">Code Hinting</h2>
+
+<h2 id="targeting-environments">Targeting Environments</h2>
+
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">trainingresources</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              trainingresources
+            
+            </li>
+            
+            <li><a href="mailto:ted@thelogbox.com">ted@thelogbox.com</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/tedhagos"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">tedhagos</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/lovescaffeine"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">lovescaffeine</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>There is nothing much to see here, this is a scratch paper. This is primarily used as a communications medium during training sessions. There is no &quot;comments&quot; section, I can be reached via email (already  listed somewhere in this site) or via twitter (also listed in this site)</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Gulp basics</title>
-  <meta name="description" content="Project Setup">
+  <title>Gulp Stream Errors</title>
+  <meta name="description" content="How to handle errors on Streams ES6 Issues">
 
   <link rel="stylesheet" href="/trainingresources/assets/main.css">
-  <link rel="canonical" href="http://localhost:4000/trainingresources/gulp/angularjs/2017/11/29/gulp-basics.html">
+  <link rel="canonical" href="http://localhost:4000/trainingresources/angularjs/tools/gulp/2017/11/30/gulp-stream-errors.html">
   <link rel="alternate" type="application/rss+xml" title="trainingresources" href="/trainingresources/feed.xml">
   
   
@@ -70,44 +70,24 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">Gulp basics</h1>
+    <h1 class="post-title" itemprop="name headline">Gulp Stream Errors</h1>
     <p class="post-meta">
-      <time datetime="2017-11-29T00:00:00+08:00" itemprop="datePublished">
+      <time datetime="2017-11-30T00:00:00+08:00" itemprop="datePublished">
         
-        Nov 29, 2017
+        Nov 30, 2017
       </time>
       
         • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Ted Hagos</span></span>
       
-      (categories : gulp, angularjs)
+      (categories : angularjs, tools, gulp)
       </p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <h2 id="project-setup">Project Setup</h2>
-
-<p>Create a working folder and initialize it for npm modules.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir test &amp;&amp; cd test
-yarn init -y  // (1)
-</code></pre></div></div>
-
-<p><strong>(1)</strong> Use the -y flag if you don’t want to answer the yarn initialization questions one by one, this will quietly create the package.json file with all the defaults in place</p>
-
-<p>To use gulp, you need to install it globally and on the project folder where you want to use it.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add -g gulp          // (1)
-yarn add gulp --save-dev  // (2)
-</code></pre></div></div>
-<p>(1) By using the <strong>-g</strong> flag, this installs gulp globally
-(2) This installs gulp locally, on the project folder. We’d like to save it on package.json as a dev dependency, hence the <strong>–save-dev</strong> flag</p>
-
-<p>Next, create a gulp file named <code class="highlighter-rouge">gulpfile.js</code> in the working folder. If you execute <code class="highlighter-rouge">gulp</code> in the local folder without passing any parameter to it, it will look up for <code class="highlighter-rouge">gulpfile.js</code> by default.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">gulp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp'</span><span class="p">);</span>
-<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'default'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Ready to go'</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></div></div>
+    <ul>
+  <li>How to handle errors on Streams</li>
+  <li>ES6 Issues</li>
+</ul>
 
 
   </div>

@@ -2,20 +2,53 @@
 
 ---
 
-@import "{{ site.theme }}";
 
+@import "{{ site.theme }}";
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono');
+
+img {
+  display:block;
+}
+
+body {
+  font-family: 'Cambria', 'Georgia', 'Times New Roman', serif;
+  background: #fdfdfd;
+}
 
 blockquote {
   //font-family: 'Cambria','Georgia', 'Times New Roman', sans-serif;
   font-style: normal;
   letter-spacing: 0px;
+  font-size: 1em;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 code, pre, .highlight pre {
-  font-family: 'Menlo', 'Inconsolata', 'Consolas', monospace;
+  font-family: 'Ubuntu Mono','Menlo', 'Consolas',monospace;
+}
+
+em {
+  font-family: 'Cambria', 'Georgia', sans-serif;
+  color: #949494;
+  font-weight: normal;
+}
+
+code, pre {
+  background: #f1f1f1;
+  border: 0px;
+  padding: 5px;
+}
+
+.highlight {
+  background-color: #f1f1f1 !important;
 }
 
 /*
+.highlighter-rouge {
+  background-color: #f1f1f1 !important;
+}
+
 code {
   font-family: 'Monaco', monospace; 
   background: #f1f1f1; 

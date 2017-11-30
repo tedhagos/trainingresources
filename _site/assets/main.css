@@ -1,6 +1,7 @@
 /**
  * Reset some basic elements
  */
+@import url("https://fonts.googleapis.com/css?family=Ubuntu+Mono");
 body, h1, h2, h3, h4, h5, h6,
 p, blockquote, pre, hr,
 dl, dd, ol, ul, figure {
@@ -469,14 +470,41 @@ pre {
   .highlight .il {
     color: #099; }
 
+img {
+  display: block; }
+
+body {
+  font-family: 'Cambria', 'Georgia', 'Times New Roman', serif;
+  background: #fdfdfd; }
+
 blockquote {
   font-style: normal;
-  letter-spacing: 0px; }
+  letter-spacing: 0px;
+  font-size: 1em;
+  padding-top: 10px;
+  padding-bottom: 10px; }
 
 code, pre, .highlight pre {
-  font-family: 'Menlo', 'Inconsolata', 'Consolas', monospace; }
+  font-family: 'Ubuntu Mono','Menlo', 'Consolas',monospace; }
+
+em {
+  font-family: 'Cambria', 'Georgia', sans-serif;
+  color: #949494;
+  font-weight: normal; }
+
+code, pre {
+  background: #f1f1f1;
+  border: 0px;
+  padding: 5px; }
+
+.highlight {
+  background-color: #f1f1f1 !important; }
 
 /*
+.highlighter-rouge {
+  background-color: #f1f1f1 !important;
+}
+
 code {
   font-family: 'Monaco', monospace; 
   background: #f1f1f1; 
