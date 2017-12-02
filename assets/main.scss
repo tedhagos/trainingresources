@@ -2,16 +2,16 @@
 
 ---
 
-
 @import "{{ site.theme }}";
-@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono');
+@import url('https://fonts.googleapis.com/css?family=Roboto|Ubuntu+Mono');
+
 
 img {
   display:block;
 }
 
 body {
-  font-family: 'Cambria', 'Georgia', 'Times New Roman', serif;
+  font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   background: #fdfdfd;
 }
 
@@ -42,6 +42,11 @@ code, pre {
 
 .highlight {
   background-color: #f1f1f1 !important;
+}
+
+h1, h2, h3 {
+  margin-top: 1.2em;
+  //color: #8b0000;
 }
 
 /*

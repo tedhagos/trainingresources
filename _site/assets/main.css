@@ -1,7 +1,7 @@
 /**
  * Reset some basic elements
  */
-@import url("https://fonts.googleapis.com/css?family=Ubuntu+Mono");
+@import url("https://fonts.googleapis.com/css?family=Roboto|Ubuntu+Mono");
 body, h1, h2, h3, h4, h5, h6,
 p, blockquote, pre, hr,
 dl, dd, ol, ul, figure {
@@ -474,7 +474,7 @@ img {
   display: block; }
 
 body {
-  font-family: 'Cambria', 'Georgia', 'Times New Roman', serif;
+  font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   background: #fdfdfd; }
 
 blockquote {
@@ -499,6 +499,9 @@ code, pre {
 
 .highlight {
   background-color: #f1f1f1 !important; }
+
+h1, h2, h3 {
+  margin-top: 1.2em; }
 
 /*
 .highlighter-rouge {
