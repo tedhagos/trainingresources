@@ -16,7 +16,6 @@ Description of the whole thing. What are the key points to remember
 * gulp.src and gulp.dest
 
 
-
 ## The Project files
 
 The following listings shows the structure and content our sample project
@@ -391,9 +390,9 @@ Restart the gulp process to reflect our changes.
 
 ## Sourcemaps and Browser Debugging
 
-
-
 ## Obfuscation
+
+
 
 ## Cleaning
 
